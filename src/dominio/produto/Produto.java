@@ -18,6 +18,7 @@ public class Produto {
 	}
 	public Produto(String nome, BigDecimal preco, Categoria categoria) {
 		super();
+//		setNome(nome.toLowerCase());
 		setNome(nome);
 		setPreco(preco);
 		setCategoria(categoria);

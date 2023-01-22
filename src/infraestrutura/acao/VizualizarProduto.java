@@ -3,7 +3,6 @@ package infraestrutura.acao;
 import java.util.Scanner;
 
 import dominio.pedido.Estoque;
-import dominio.pedido.Item;
 
 public class VizualizarProduto implements Funcao {
 
@@ -21,12 +20,13 @@ public class VizualizarProduto implements Funcao {
 			
 		
 		System.out.println("\ndigite o nome do produto: ");
-		
 		String nomeProduto= scanner.next();
-		Item item = estoque.buscarProdutoPorNome(nomeProduto);
-		System.out.println("\nVoce escolheu: "+item.getProduto().getNome()
-				+" que custa: "+item.getProduto().getPreco()+
-				", temos "+item.getQuantidade()+" dele em estoque.");
+		
+		estoque.quantosItensDoProdutoTemEmEstoque(nomeProduto);
+//		Produto produto = estoque.buscarProdutoPorNome(nomeProduto);
+//		System.out.println("\nVoce escolheu: "+produto.getNome()
+//				+" que custa: "+produto.getPreco()+
+//				", temos "+produto+" dele em estoque.");
 		System.out.println("                                                                   pag 02");
 		System.out.println("\n\nDigite s voltar ao menu principal,"
 						 + "\nou qualquer tecla para vizualizar novamente.");

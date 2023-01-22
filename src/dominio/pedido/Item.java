@@ -1,6 +1,7 @@
 package dominio.pedido;
 
 import java.math.BigDecimal;
+import java.util.Objects;
 
 import dominio.produto.Produto;
 
@@ -47,6 +48,22 @@ public class Item {
 	public String toString() {
 		return "O produto: "+produto.getNome()+" custa: "+valorItem+" temos "+quantidade+" em estoque."	;
 	}
+	@Override
+	public int hashCode() {
+		return Objects.hash(produto, quantidade);
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Item other = (Item) obj;
+		return Objects.equals(produto, other.produto) && quantidade == other.quantidade;
+	}
+	
 	
 
 }

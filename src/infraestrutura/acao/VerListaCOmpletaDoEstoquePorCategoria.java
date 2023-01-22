@@ -26,7 +26,7 @@ public class VerListaCOmpletaDoEstoquePorCategoria implements Funcao{
 			String categoria = scanner.next();
 			
 			System.out.println();
-			List<Produto> listaCategoria = estoque.mostrarPorCategoria(Categoria.valueOf(categoria.toUpperCase()));
+			List<Produto> listaCategoria = estoque.recuperarPorCategoria(Categoria.valueOf(categoria.toUpperCase()));
 			listaCategoria.forEach(p->{
 				System.out.println(p.getNome()+" R$: "+p.getPreco());
 			});
@@ -50,7 +50,7 @@ public class VerListaCOmpletaDoEstoquePorCategoria implements Funcao{
 		String categoria = scanner.next();
 		
 		System.out.println();
-		List<Produto> listaCategoria = estoque.mostrarPorCategoria(Categoria.valueOf(categoria.toUpperCase()));
+		List<Produto> listaCategoria = estoque.recuperarPorCategoria(Categoria.valueOf(categoria.toUpperCase()));
 		listaCategoria.forEach(p->{
 			System.out.println(p.getNome()+" R$: "+p.getPreco());
 		});

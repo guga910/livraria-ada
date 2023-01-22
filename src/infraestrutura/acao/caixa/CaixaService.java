@@ -1,16 +1,16 @@
 package infraestrutura.acao.caixa;
 
 import dominio.Caixa;
-import infraestrutura.repository.PedidoRepositoryImplementacao;
+import infraestrutura.repository.PedidoRepositoryImpl;
 
 public class CaixaService {
 	
 	
-	private PedidoRepositoryImplementacao pedidoRepository= new PedidoRepositoryImplementacao();
+	private PedidoRepositoryImpl pedidoRepository= new PedidoRepositoryImpl();
 	private Caixa caixa= new Caixa();
 	
 	
-	public PedidoRepositoryImplementacao acessoPedidoRepository() {
+	public PedidoRepositoryImpl acessoPedidoRepository() {
 		return pedidoRepository;
 	}
 	public Caixa acessoCaixa() {

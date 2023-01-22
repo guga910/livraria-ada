@@ -17,6 +17,8 @@ public class Estoque {
 	public List<Item> recuperarEstoque() {
 		return this.listaItens;
 	}
+	
+		
 	public void mostrarProdutosDoEstoque() {
 		
 		listaItens.stream().forEach(nomeProdutos-> 
@@ -27,7 +29,7 @@ public class Estoque {
 		listaItens.add(new Item(qnt, produto));
 	}
 
-	public List<Produto> mostrarPorCategoria(Categoria categoria) {
+	public List<Produto> recuperarPorCategoria(Categoria categoria) {
 
 		List<Item> itens = listaItens.stream().filter(c -> c.getProduto().getCategoria().equals(categoria)).toList();
 
@@ -35,25 +37,21 @@ public class Estoque {
 		return produtos;
 	}
 
-//	public Produto buscarProdutoPorNome(String nome) {
-//		Produto produtos = this.listaItens.stream().filter(c -> c.getProduto().getNome().equals(nome))
-//				.map(p -> p.getProduto()).findFirst().orElseThrow();
-//		return produtos;
-//		
-//	}
-	public Item buscarProdutoPorNome(String nome) {
-		Item itemEscolhido = this.listaItens.stream().filter(i-> i.getProduto().getNome().equals(nome)).findFirst().get();
+	public Produto buscarProdutoPorNome(String nome) {
+		Produto produtoEscolhido = this.listaItens.stream()
+				  .filter(i-> i.getProduto().getNome()
+						  .equalsIgnoreCase(nome))
+				  .map(p-> p.getProduto())
+				  .findFirst()
+				  .orElseThrow(()-> new RuntimeException("Produto nao foi encontrado."));
+		  
+		  
 		
-		return itemEscolhido;
+		return produtoEscolhido;
 	}
 	
 	
-	public Produto buscarProduto(Produto produto) {
-		Produto produtos = this.listaItens.stream().filter(c -> c.getProduto().equals(produto))
-				.map(p -> p.getProduto()).findFirst().get();
-		return produtos;
-		
-	}
+	
 	public void atualizarEstoque(Produto produto, long quantidade) {
 		
 		for (Item item : listaItens) {
@@ -66,6 +64,25 @@ public class Estoque {
 		
 	}
 	
+	public void quantosItensDoProdutoTemEmEstoque(String	nome) {
+		Produto prod = buscarProdutoPorNome(nome);
+		Item itemBuscado = recuperarEstoque().stream()
+		.filter(p-> p.getProduto().equals(prod))
+		.findFirst().get();
+		
+		String texto= "Voce escolheu o produto "+itemBuscado.getProduto().getNome()+
+				" que custa R$: "+itemBuscado.getProduto().getPreco()+
+				" e ainda temos "+itemBuscado.getQuantidade()+" dele no estoque.";
+		System.out.println(texto);
+	}
+	public Item recuperaItemDoEstoquePeloNomeDoProduto(String	nome) {
+		Produto prod = buscarProdutoPorNome(nome);
+		Item itemBuscado = recuperarEstoque().stream()
+				.filter(p-> p.getProduto().equals(prod))
+				.findFirst().get();
+		return itemBuscado;
+	}
+	
 	
 	
 	
@@ -73,7 +90,7 @@ public class Estoque {
 	private List<Item> arquivo() {
 		List<Item> itens = new ArrayList<>();
 
-		AlbumDeMusica lavouTaNovo = new AlbumDeMusica("Raumindos", new BigDecimal(20.90), "Raimundos", Genero.MUSICA,
+		AlbumDeMusica lavouTaNovo = new AlbumDeMusica("Raimundos", new BigDecimal(20.90), "Raimundos", Genero.MUSICA,
 				"18+");
 		itens.add(new Item(10, lavouTaNovo));
 

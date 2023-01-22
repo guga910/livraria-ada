@@ -36,7 +36,7 @@ public class CriarPedido {
 				produtoEscolhido = scanner.next();
 			}
 
-			Produto produto = estoque.buscarProdutoPorNome(produtoEscolhido).getProduto();
+			Produto produto = estoque.buscarProdutoPorNome(produtoEscolhido);
 
 			System.out.println("agora, diga a quantidade:");
 			long qntEscolhida = scanner.nextLong();

@@ -25,13 +25,11 @@ public class PageCaixa implements Funcao {
 				sair= false;
 				break;
 			}
-//			sair = !opcao.equalsIgnoreCase("s");
 			System.out.println("\nDigite 1: Ver valor vendido hoje.");
 			System.out.println("Digite  2: Mostrar ultimos pedidos.");
 			System.out.println("Digite 3: mostrar Pedidos de hoje.");
 			System.out.println("Digite 4: Total vendido hoje.\n");
 
-//			System.out.println("Digite 6: total pedidos da semana.");
 			int selecao = scanner.nextInt();
 			switch (selecao) {
 			case 1: {

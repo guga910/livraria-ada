@@ -8,7 +8,7 @@ import java.util.List;
 import dominio.pedido.Pedido;
 import dominio.pedido.PedidoRepository;
 
-public class PedidoRepositoryImplementacao implements PedidoRepository {
+public class PedidoRepositoryImpl implements PedidoRepository {
 	
 	private List<Pedido> listaPedidos= arquivo();
 
@@ -22,7 +22,6 @@ public class PedidoRepositoryImplementacao implements PedidoRepository {
 		
 		for (int i = 0; i < recuperarPedido().size() ; i++) {
 			LocalDate dia = recuperarPedido().get(i).getDataPedido();
-//			System.err.println(dia);
 			
 			for (int j = 0; j < recuperarPedido().size(); j++) {
 				
@@ -35,14 +34,7 @@ public class PedidoRepositoryImplementacao implements PedidoRepository {
 			}
 			System.out.println(venddasDia.size());
 			
-//		System.out.println("No dia: "+dia+" tivemos: "+venddasDia.size()+" pedidos.\n");
 		}
-	}
-	public static void main(String[] args) {
-		
-		PedidoRepositoryImplementacao p= new PedidoRepositoryImplementacao();
-BigDecimal i = p.totalVendidoDoDia(LocalDate.now().minusDays(1));
-System.out.println(i);
 	}
 
 	@Override
@@ -75,18 +67,13 @@ System.out.println(i);
 
 	@Override
 	public void removerItemNomeProduto(Pedido pedido,String nome) {
-//		aqui
-//		for (int i = 0; i < listaPedidos.size(); i++) {
-//			for (int j = 0; j <listaPedidos.get(i).getItens().size(); j++) {
-//				
-//				if (listaPedidos.get(i).getItens().get(j).getProduto().equals(nome)) {
-//					
-//				  listaPedidos.get(i).getItens().remove(listaPedidos.get(i).getItens().get(j));
-//				}
-//				
-//			}
-			
-//		}
+		
+		 pedido.getItens().forEach(prod-> {
+			 if(prod.getProduto().getNome().equalsIgnoreCase(nome)) {
+				 pedido.getItens().remove(prod);
+			 }
+		 });
+		
 		
 	}
 	

@@ -20,8 +20,6 @@ public class UsuarioRepository {
 	}
 
 	public Usuario buscarUsuarioPorNome(String nome) {
-//		Usuario usuario = this.listaDeUsuarios.stream().filter(u -> u.getNome().equalsIgnoreCase(nome)).findFirst()
-//				.get();
 		Optional<Usuario> usuario = this.listaDeUsuarios.stream().filter(u -> u.getNome().equalsIgnoreCase(nome))
 				.findFirst();
 

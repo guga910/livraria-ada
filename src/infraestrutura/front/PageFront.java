@@ -22,8 +22,11 @@ public class PageFront {
 		while (sair) {
 
 			System.out.println("Digite 1 para Novo registro\nou 2 para se Logar.");
-			int opcao = scanner.nextInt();
+			int opcao =0;
+				opcao = scanner.nextInt();
+				
 			if (opcao == 1) {
+				
 				usuario= new PageRegistro().executar(scanner);
 				
 			} else if (opcao == 2) {
@@ -78,6 +81,12 @@ public class PageFront {
 			entrada = scanner.next();
 			sair = !entrada.equalsIgnoreCase("s");
 		}
+	}
+	
+	public static void start() {
+		PageFront pageFront= new PageFront();
+		Scanner scanner= new Scanner(System.in);
+		pageFront.primeiroContato(scanner);
 	}
 
 }
