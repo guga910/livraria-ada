@@ -9,58 +9,45 @@ import infraestrutura.front.caixa.PageCaixa;
 import infraestrutura.repository.UsuarioRepository;
 
 public class PageLogin implements Funcao {
-	
-private Login login= new Login();
 
+	private Login login = new Login();
 
 	@Override
 	public void executar(Scanner scanner) {
-		UsuarioRepository usuarioRepository= new UsuarioRepository();
-		
-		boolean sair= true;
-		String opcao="";
-		
-		while(sair) {
+		UsuarioRepository usuarioRepository = new UsuarioRepository();
+
+		boolean sair = true;
+		String opcao = "";
+
+		while (sair) {
 			System.out.println("\nOk, vamos lá, digite seu email:");
-			String email = opcao= scanner.next();
-			
+			String email = opcao = scanner.next();
+
 			System.out.println("\ndigite sua senha:");
-			String senha = opcao= scanner.next();
-			
-			Usuario usuarioJaRegistrado= usuarioRepository.buscarUsuarioPorEmail(email);
-			if(!usuarioJaRegistrado.getSenha().equals(senha)) {
+			String senha = opcao = scanner.next();
+
+			Usuario usuarioJaRegistrado = usuarioRepository.buscarUsuarioPorEmail(email);
+			if (!usuarioJaRegistrado.getSenha().equals(senha)) {
 				System.err.println("senha nao cadastrada!");
 			}
-			
-			
+
 			boolean deuCerto = login.login(usuarioJaRegistrado);
-//			System.err.println("deuCerto "+deuCerto);
-			
-			if(deuCerto) {
+
+			if (deuCerto) {
 				boolean isFuncionario = login.verificarLimitacaoAcesso(usuarioJaRegistrado);
-//				System.err.println("isFuncionario "+isFuncionario);
-				
-				if(isFuncionario) {
-					
+
+				if (isFuncionario) {
+
 					new PageCaixa().executar(scanner);
-					
-				opcao="s";
-				sair= !opcao.equalsIgnoreCase("s");
-				break;
+
+					opcao = "s";
+					sair = !opcao.equalsIgnoreCase("s");
+					break;
 				}
 			}
 			System.err.println("Algo deu errado,parece que voce nao trabalha mas aqui\njá foi no RH?.");
-			
-			
-			
-			
-		System.out.println("\n\nDigite s para sair, ou qualquer tecla para vizualizar outro.");
-		
-		
-		}
-		
-	}
-	
-	
+			System.out.println("\n\nDigite s para sair, ou qualquer tecla para vizualizar outro.");
 
+		}
+	}
 }

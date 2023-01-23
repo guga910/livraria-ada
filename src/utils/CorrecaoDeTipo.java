@@ -1,40 +1,34 @@
 package utils;
 
+import static java.lang.Character.isLetter;
+
 import java.util.Scanner;
 
 public class CorrecaoDeTipo {
 
-	public static String string(Scanner scanner) {
-		String test = "";
+	public static int isInt(Scanner scanner) {
+		String valorRecebido = "";
 		try {
 
-			test = scanner.next();
-			System.out.println(test);
-		} catch (Exception e) {
 			boolean sair = true;
-			System.err.println("tem que ser texto!");
+
 			while (sair) {
+				valorRecebido = scanner.next();
 
-				if (test == null) {
-					System.out.println("teste nao foi nulo");
-					test = scanner.next();
+				char[] array = valorRecebido.toCharArray();
+				if (!isLetter(array[0])) {
 					sair = false;
-
+				}
+				if (sair) {
+					System.err.println("Nao pode ser texto, só numeros, tente novamente:");
 				}
 			}
-			return test;
-		}
+			return Integer.valueOf(valorRecebido);
 
-		return test;
-	}
-	public static void main(String[] args) {
-		
-		Scanner scanner= new Scanner(System.in);
-		
-		System.out.println("digite um texto: ");
-		String texto = string(scanner);
-		
-		System.out.println("Ta aqui seu texto: "+texto);
+		} catch (Exception e) {
+
+		}
+		return Integer.valueOf(valorRecebido);
 	}
 
 }

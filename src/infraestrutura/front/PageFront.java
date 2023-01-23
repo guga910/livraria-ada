@@ -1,5 +1,7 @@
 package infraestrutura.front;
 
+import static utils.CorrecaoDeTipo.isInt;
+
 import java.util.Scanner;
 
 import dominio.Usuario;
@@ -15,35 +17,26 @@ public class PageFront {
 
 		boolean sair = true;
 		String entrada = "";
-		Usuario usuario= new Usuario();
+		Usuario usuario = new Usuario();
 		System.out.println(
 				"Seja bem vindo a Livraria Ada,\n    Mesmo se aqui voce não comprar, a gente vai te abraçar!\n");
 
 		while (sair) {
 
 			System.out.println("Digite 1 para Novo registro\nou 2 para se Logar.");
-			int opcao =0;
-				opcao = scanner.nextInt();
-				
+			int opcao = 0;
+			opcao = isInt(scanner);
+
 			if (opcao == 1) {
-				
-				usuario= new PageRegistro().executar(scanner);
-				
+
+				usuario = new PageRegistro().executar(scanner);
+
 			} else if (opcao == 2) {
 				new PageLogin().executar(scanner);
 				System.out.println("Volte Sempre!");
-				
+
 				break;
 			}
-
-//			System.out.println("Por favor, como posso lhe chamar?");
-//			entrada = scanner.next();
-//			Usuario usuario = new Usuario(entrada);
-			/*
-			 * se for funcionario chama o metodo que controla o caixa eletronico vou segyuir
-			 * com o fluxo de um cliente cirnaod um 0pedido e efetuando a compra
-			 */
-
 			System.out.println("\nOk " + usuario.getNome() + ", selecione a opção desejada:\n");
 
 			System.out.println("Digite 1: saber se temos seu produto em estoque.");
@@ -54,7 +47,7 @@ public class PageFront {
 
 			System.out.println("Digite 4: Para criar um pedido.\n");
 
-			int primeiraSelecao = scanner.nextInt();
+			int primeiraSelecao = isInt(scanner);
 
 			switch (primeiraSelecao) {
 			case 1: {
@@ -82,10 +75,10 @@ public class PageFront {
 			sair = !entrada.equalsIgnoreCase("s");
 		}
 	}
-	
+
 	public static void start() {
-		PageFront pageFront= new PageFront();
-		Scanner scanner= new Scanner(System.in);
+		PageFront pageFront = new PageFront();
+		Scanner scanner = new Scanner(System.in);
 		pageFront.primeiroContato(scanner);
 	}
 

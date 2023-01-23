@@ -1,5 +1,7 @@
 package infraestrutura.front.caixa;
 
+import static utils.CorrecaoDeTipo.isInt;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Scanner;
@@ -21,8 +23,8 @@ public class PageCaixa implements Funcao {
 			System.out.println("\nOla amigo, digite a opção desejada:\n");
 			System.out.println("\n Digite s para sair, ou qualquer tecla para continuar.");
 			opcao = scanner.next();
-			if(opcao.equalsIgnoreCase("s")) {
-				sair= false;
+			if (opcao.equalsIgnoreCase("s")) {
+				sair = false;
 				break;
 			}
 			System.out.println("\nDigite 1: Ver valor vendido hoje.");
@@ -30,7 +32,7 @@ public class PageCaixa implements Funcao {
 			System.out.println("Digite 3: mostrar Pedidos de hoje.");
 			System.out.println("Digite 4: Total vendido hoje.\n");
 
-			int selecao = scanner.nextInt();
+			int selecao = isInt(scanner);
 			switch (selecao) {
 			case 1: {
 				caixaService.acessoCaixa().mostarDinheiroEmCaixaHoje();
@@ -50,11 +52,8 @@ public class PageCaixa implements Funcao {
 				System.out.println("Total vendido no dia de hoje: " + totalVendidoDoDia);
 			}
 
-			
-//			default:
-//			}
-
-		}}
+			}
+		}
 
 	}
 }
